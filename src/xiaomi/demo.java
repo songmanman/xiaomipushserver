@@ -104,7 +104,15 @@ public class demo {
 	                .title(title)
 	                .description(description).payload(messagePayload)
 	                .restrictedPackageName(MY_PACKAGE_NAME)
+	                .passThrough(0)  //消息使用通知栏方式
 	                .notifyType(1)     // 使用默认提示音提示
+//	                .extra(Constants.EXTRA_PARAM_NOTIFY_EFFECT, Constants.NOTIFY_WEB)
+//	                .extra(Constants.EXTRA_PARAM_WEB_URI, bean.getHref())
+//	                .extra(Constants.EXTRA_PARAM_NOTIFY_EFFECT, Constants.NOTIFY_LAUNCHER_ACTIVITY)
+	                
+	                .extra(Constants.EXTRA_PARAM_NOTIFY_EFFECT, Constants.NOTIFY_ACTIVITY)
+	                //intent:#Intent;component=com.open.pxing/.activity.m.MImagePullListActivity;S.URL=1112;end
+	                .extra(Constants.EXTRA_PARAM_INTENT_URI, "intent:#Intent;component=com.open.pxing/.activity.m.MImagePullListActivity;S.URL="+bean.getHref()+";end")
 	                .build();
 	     sender.sendToAlias(message, alias, 0); //根据alias，发送消息到指定设备上，不重试。
 	     System.out.println("sendMessageToAlias");
